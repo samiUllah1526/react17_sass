@@ -12,16 +12,8 @@ export const getRandomArray = () => {
         return {
             value,
             id: index + 1,
-            open: false,
         }
     })
 
     return modifiedArray.sort(() => Math.random() > 0.5 ? 1 : -1)
 }
-
-
-// [
-//     {
-//         id: 1
-//     }
-// ]

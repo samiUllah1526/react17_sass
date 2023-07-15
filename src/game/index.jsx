@@ -46,7 +46,7 @@ export const Game = () => {
 
 
 const Tile = ({ item, selectedCardsIDs, matchedCardsIDs, onClick }) => {
-  const classes = styles["tile"] + " " + (matchedCardsIDs.includes(item.id) || selectedCardsIDs.includes(item.id) ? styles["selected_tile"] : '')
+  const classes = styles["tile"] + " " + (matchedCardsIDs.includes(item.id) || selectedCardsIDs.includes(item.id) ? '': styles["selected_tile"])
   return (
     <div className={classes} onClick={() => onClick(item.id)}>
       {item.value}

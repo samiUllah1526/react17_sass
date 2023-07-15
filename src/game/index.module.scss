@@ -3,6 +3,13 @@ $title-margin: 10px;
 $card-width:$base-width + $title-margin * 3 * 2;
 $tile-width: $base-width / 3 ;
 
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .card {
     background: lightcoral;
     border-radius: 20px;
@@ -15,7 +22,9 @@ $tile-width: $base-width / 3 ;
 }
 
 .tile {
-    background: rgb(128, 240, 150);
+    background: #ffffff;
+
+
     border-radius: 5px;
     margin: $title-margin;
     width: $tile-width;
@@ -23,8 +32,45 @@ $tile-width: $base-width / 3 ;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    perspective: 5000px;
+    transform-style: preserve-3d;
+    position: relative;
+    transition: 0.75s;
+    transform: rotateY(0deg);
+}
+
+.tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #aecb41;
+    transition: 0.75s;
+    // opacity: .75;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
 }
 
 .selected_tile {
-    background: #aecb41;
+    transform: rotateY(180deg);
+}
+
+
+.btn {
+    color: white;
+    background: #f08080;
+    padding: 15px 5px;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.75s;
+}
+
+.btn:hover {
+    border: 1px solid #f08080;
+    color: #f08080;
+    background: #ffffff;
 }
