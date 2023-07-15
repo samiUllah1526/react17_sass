@@ -8,21 +8,21 @@ export const Game = () => {
   const [matchedCardsIDs, setMatchedCardsIDs] = useState([])
 
   const handleSelectedCard = (id) => {
-    if (selectedCardsIDs.length < 2) {
-      const tempSelectedIDs = selectedCardsIDs.includes(id) ? selectedCardsIDs : [...selectedCardsIDs, id]
-      const tempSelectedCards = cards.filter(item => tempSelectedIDs.includes(item.id))
+    const tempSelectedIDs = selectedCardsIDs.includes(id) ? selectedCardsIDs : [...selectedCardsIDs, id]
+    const tempSelectedCards = cards.filter(item => tempSelectedIDs.includes(item.id))
 
-      if (tempSelectedCards.length === 2) {
-        if (tempSelectedCards[0].value === tempSelectedCards[1].value) {
-          setMatchedCardsIDs(prev => [...prev, ...tempSelectedIDs])
-        setSelectedCardsIDs([])
-        } else {
-          setSelectedCardsIDs([])
-        }
-      } else {
-        setSelectedCardsIDs([tempSelectedIDs[0]])
-      }
+    if (tempSelectedCards.length !== 2) {
+      setSelectedCardsIDs([tempSelectedIDs[0]])
+      return
     }
+
+    if (tempSelectedCards[0].value !== tempSelectedCards[1].value) {
+      setSelectedCardsIDs([])
+      return
+    }
+
+    setMatchedCardsIDs(prev => [...prev, ...tempSelectedIDs])
+    setSelectedCardsIDs([])
   }
 
 
