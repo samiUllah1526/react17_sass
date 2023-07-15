@@ -1,60 +1,30 @@
 import { useMemo, useState } from 'react'
-import { arrayRange, getRandomArray } from '../utils'
+import { getRandomArray } from '../utils'
 import styles from './index.module.scss'
 
-const addID = (id, list) => {
-  return list.includes(id) ? list : [...list, id]
-}
-
 export const Game = () => {
-  // const memoizedRandomArray = useMemo(() => getRandomArray, [])
   const [cards, setCards] = useState(getRandomArray())
   const [selectedCardsIDs, setSelectedCardsIDs] = useState([])
   const [matchedCardsIDs, setMatchedCardsIDs] = useState([])
 
   const handleSelectedCard = (id) => {
-
     if (selectedCardsIDs.length < 2) {
-      setSelectedCardsIDs(prev => {
-        // console.log("if", addID(id, prev))
-        // cards.find(item => item.id === selectedCardsIDs[0]).value
-        return addID(id, prev)
-      })
-    } else {
-      setSelectedCardsIDs(() => {
-        // console.log("elseif", [])
-        return []
-      })
+      const tempSelectedIDs = selectedCardsIDs.includes(id) ? selectedCardsIDs : [...selectedCardsIDs, id]
+      const tempSelectedCards = cards.filter(item => tempSelectedIDs.includes(item.id))
+
+      if (tempSelectedCards.length === 2) {
+        if (tempSelectedCards[0].value === tempSelectedCards[1].value) {
+          setMatchedCardsIDs(prev => [...prev, ...tempSelectedIDs])
+        setSelectedCardsIDs([])
+        } else {
+          setSelectedCardsIDs([])
+        }
+      } else {
+        setSelectedCardsIDs([tempSelectedIDs[0]])
+      }
     }
-
-
-    //check if selected cards are matched
-    if (selectedCardsIDs.length < 2) return;
-    if (cards.find(item => item.id === selectedCardsIDs[0]).value === cards.find(item => item.id === selectedCardsIDs[1]).value) {
-      setMatchedCardsIDs(prev => {
-
-
-        console.log("matched ones=>", [...prev, ...selectedCardsIDs])
-        return [...prev, ...selectedCardsIDs]
-      })
-    } else {
-
-    }
-
-
-
-
-    // const updated = cards.map(item => item.id === id ? { ...item, open: !item.open }: item)
-    // setCards(updated)
-    // const openCards = updated.filter(item => item.open)
-    // if(openCards.length > 1) {
-    //   if(openCards[0].value === openCards[1].value) {
-    //     // setMatchedCardsIDs(prev => [ ...prev, openCards[0].id, openCards[1].id])
-    //   } 
-    // } else {
-
-    // }
   }
+
 
   return (
     <div className={styles["card"]}>
