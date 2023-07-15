@@ -1,9 +1,10 @@
 import './App.scss'
+import { Game } from './game';
 
 function App() {
   return (
     <div className="App">
-      just app
+      <Game />
     </div>
   )
 }

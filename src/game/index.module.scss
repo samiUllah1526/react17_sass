@@ -1,0 +1,30 @@
+$base-width: 300px;
+$title-margin: 10px;
+$card-width:$base-width + $title-margin * 3 * 2;
+$tile-width: $base-width / 3 ;
+
+.card {
+    background: lightcoral;
+    border-radius: 20px;
+    width: $card-width;
+    // height: $card-width;
+
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+
+.tile {
+    background: rgb(128, 240, 150);
+    border-radius: 5px;
+    margin: $title-margin;
+    width: $tile-width;
+    height: $tile-width;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected_tile {
+    background: #aecb41;
+}
