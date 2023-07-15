@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { getRandomArray } from '../utils'
 import styles from './index.module.scss'
 
@@ -6,6 +6,12 @@ export const Game = () => {
   const [cards, setCards] = useState(getRandomArray())
   const [selectedCardsIDs, setSelectedCardsIDs] = useState([])
   const [matchedCardsIDs, setMatchedCardsIDs] = useState([])
+
+  const handleReset = () => {
+    setCards(getRandomArray())
+    setSelectedCardsIDs([])
+    setMatchedCardsIDs([])
+  }
 
   const handleSelectedCard = (id) => {
     const tempSelectedIDs = selectedCardsIDs.includes(id) ? selectedCardsIDs : [...selectedCardsIDs, id]
@@ -27,10 +33,13 @@ export const Game = () => {
 
 
   return (
-    <div className={styles["card"]}>
-      {cards.map((item) => (
-        <Tile key={item.id} {...{ item, selectedCardsIDs, matchedCardsIDs }} onClick={handleSelectedCard} />
-      ))}
+    <div className={styles['wrapper']}>
+      <div className={styles["card"]}>
+        {cards.map((item) => (
+          <Tile key={item.id} {...{ item, selectedCardsIDs, matchedCardsIDs }} onClick={handleSelectedCard} />
+        ))}
+      </div>
+      <button className={styles['btn']} onClick={handleReset}>Reset</button>
     </div>
   )
 }
