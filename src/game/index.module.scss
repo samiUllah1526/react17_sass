@@ -8,14 +8,15 @@ $tile-width: $base-width / 3 ;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    transform-style: preserve-3d;
+
 }
 
 .card {
     background: lightcoral;
     border-radius: 20px;
     width: $card-width;
-    // height: $card-width;
-
+    perspective: 5000px;
     display: flex;
     flex-wrap: wrap;
    
@@ -23,8 +24,6 @@ $tile-width: $base-width / 3 ;
 
 .tile {
     background: #ffffff;
-
-
     border-radius: 5px;
     margin: $title-margin;
     width: $tile-width;
@@ -33,10 +32,12 @@ $tile-width: $base-width / 3 ;
     justify-content: center;
     align-items: center;
 
-    perspective: 5000px;
-    transform-style: preserve-3d;
     position: relative;
     transition: 0.75s;
+    transform: rotateY(180deg);
+}
+
+.selected_tile {
     transform: rotateY(0deg);
 }
 
@@ -45,15 +46,15 @@ $tile-width: $base-width / 3 ;
     position: absolute;
     inset: 0;
     background: #aecb41;
-    transition: 0.75s;
     // opacity: .75;
-    transform: rotateY(180deg);
+    transform: rotateY(0deg);
     backface-visibility: hidden;
 }
 
-.selected_tile {
+.selected_tile::after {
     transform: rotateY(180deg);
 }
+
 
 
 .btn {
@@ -66,7 +67,7 @@ $tile-width: $base-width / 3 ;
     border: 1px solid transparent;
     font-weight: 600;
     text-transform: uppercase;
-    transition: 0.75s;
+    transition: 2s;
 }
 
 .btn:hover {
