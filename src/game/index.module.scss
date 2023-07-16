@@ -1,7 +1,7 @@
 $base-width: 300px;
 $title-margin: 10px;
-$card-width:$base-width + $title-margin * 3 * 2;
-$tile-width: $base-width / 3 ;
+$card-width: $base-width + $title-margin * 3 * 2;
+$tile-width: $base-width / 3;
 
 
 .wrapper {
@@ -9,18 +9,18 @@ $tile-width: $base-width / 3 ;
     flex-direction: column;
     gap: 5px;
     transform-style: preserve-3d;
-
+    perspective: 5000px;
 }
+
 
 .card {
     background: lightcoral;
     border-radius: 20px;
     width: $card-width;
-    perspective: 5000px;
     display: flex;
     flex-wrap: wrap;
-   
 }
+
 
 .tile {
     background: #ffffff;
@@ -37,9 +37,11 @@ $tile-width: $base-width / 3 ;
     transform: rotateY(180deg);
 }
 
+
 .selected_tile {
     transform: rotateY(0deg);
 }
+
 
 .tile::after {
     content: "";
@@ -51,10 +53,10 @@ $tile-width: $base-width / 3 ;
     backface-visibility: hidden;
 }
 
+
 .selected_tile::after {
     transform: rotateY(180deg);
 }
-
 
 
 .btn {
@@ -69,6 +71,7 @@ $tile-width: $base-width / 3 ;
     text-transform: uppercase;
     transition: 2s;
 }
+
 
 .btn:hover {
     border: 1px solid #f08080;
